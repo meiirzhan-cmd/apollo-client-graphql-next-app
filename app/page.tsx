@@ -1,61 +1,64 @@
-import Link from "next/link";
+import RenderingInfo from "./_components/RenderingInfo";
+import { Suspense } from "react";
+import ContinentsList from "./_components/ContinentsList";
+import ContinentsListSkeleton from "./_components/ContinentsListSkeleton";
+import { CountriesList } from "./_components/CountriesList";
 
-export default function HomePage() {
+export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
-      <div className="text-center max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          🌍 GraphQL Dashboard
-        </h1>
-        <p className="text-xl text-slate-400 mb-8">
-          Демонстрация Apollo Client с Next.js App Router
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          <div className="bg-slate-800 rounded-xl p-6 text-left">
-            <div className="text-3xl mb-3">🖥️</div>
-            <h3 className="text-lg font-semibold text-green-400 mb-2">
-              Server Components
-            </h3>
-            <p className="text-sm text-slate-400">
-              Данные о континентах загружаются на сервере с помощью{" "}
-              <code className="text-green-300">getClient().query()</code>
-            </p>
+    <div className="min-h-screen bg-slate-900 py-8 px-4">
+      <div className="max-w-6xl mx-auto space-y-6">
+        {/* Заголовок */}
+        <header className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+            🌍 Countries GraphQL Dashboard
+          </h1>
+          <p className="text-slate-400">
+            Apollo Client + Next.js App Router: демонстрация SSR и CSR
+          </p>
+          <div className="mt-4 flex items-center justify-center gap-4 text-sm">
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 bg-green-500 rounded-full" />
+              <span className="text-slate-300">SSR (Server Component)</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 bg-blue-500 rounded-full" />
+              <span className="text-slate-300">CSR (Client Component)</span>
+            </span>
           </div>
+        </header>
 
-          <div className="bg-slate-800 rounded-xl p-6 text-left">
-            <div className="text-3xl mb-3">🌐</div>
-            <h3 className="text-lg font-semibold text-blue-400 mb-2">
-              Client Components
-            </h3>
-            <p className="text-sm text-slate-400">
-              Список стран загружается в браузере с помощью{" "}
-              <code className="text-blue-300">useQuery()</code>
-            </p>
-          </div>
+        {/* Информация о рендеринге */}
+        <RenderingInfo />
+
+        {/* Двухколоночная сетка */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* SSR: Континенты - загружается на сервере */}
+          <Suspense fallback={<ContinentsListSkeleton />}>
+            <ContinentsList />
+          </Suspense>
+
+          {/* CSR: Страны - загружается в браузере */}
+          <CountriesList />
         </div>
 
-        <Link
-          href="/dashboard"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition shadow-lg shadow-blue-500/25"
-        >
-          <span>Открыть Dashboard</span>
-          <span>→</span>
-        </Link>
-
-        <div className="mt-8 text-sm text-slate-500">
+        {/* Футер */}
+        <footer className="text-center text-slate-500 text-sm pt-8 border-t border-slate-800">
           <p>
-            API:{" "}
+            Данные из{" "}
             <a
               href="https://countries.trevorblades.com"
-              className="text-blue-400 hover:underline"
               target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline"
             >
-              countries.trevorblades.com
+              Countries GraphQL API
             </a>
           </p>
-          <p className="mt-1">Apollo Client + Next.js 16 + TypeScript</p>
-        </div>
+          <p className="mt-1">
+            Apollo Client 3 + Next.js App Router + TypeScript
+          </p>
+        </footer>
       </div>
     </div>
   );
