@@ -8,6 +8,10 @@ A modern, full-stack Next.js application demonstrating **Server-Side Rendering (
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.0-38B2AC?style=flat-square&logo=tailwind-css)
 
+> **Note:** This project is for **learning purposes only**. It demonstrates basic SSR and CSR patterns with Apollo Client and GraphQL without any complicated business logic.
+
+![App Screenshot](screenshots/image.png)
+
 ## ✨ Features
 
 ### 🎨 Modern UI/UX
