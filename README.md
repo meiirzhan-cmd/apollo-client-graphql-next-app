@@ -47,7 +47,7 @@ A modern, full-stack Next.js application demonstrating **Server-Side Rendering (
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/meiirzhan-cmd/apollo-client-graphql-next-app.git
 cd apollo-client-graphql-next-app
 ```
 
